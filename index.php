@@ -1,42 +1,21 @@
 <?php
-$vardas = 'Petras Petraitis';
-$amzius =12;
-$statusas = 'dirba';
+$numbersArray = [1, 3, 3, [5, 8, 6, [6, 8, 9]],6, 7];
+$numbersArray2 = [2, 3, 5, 7];
 
-
-if($amzius > 0 && $amzius < 18) {
-    print $vardas . ' Yra nepilnametis. ';
-    print $vardas . ' Netinkamas kariuomenei';
-}elseif($amzius >= 18 && $amzius < 65){
-    print $vardas . ' Yra pilnametis ';
-    if($amzius <= 26) {
-        if($statusas == 'dirba' || $statusas == 'nedirba'){
-            print $vardas . ' Tinkamas Tarnybai.';
-        }elseif($statusas == 'studijuoja. '){
-            print $vardas . ' Netinkamas kariuomenei';
-        }
-    }elseif($amzius >= 27){
-        print $vardas . ' Netinkamas Kariuomenei. ';
+function sumArrayNumbers($array){
+    $sum = 0;
+    foreach ($array as $element){
+    if(is_array($element)){
+        $sum = $sum + sumArrayNumbers($element);
+    }else {
+        $sum = $sum + $element;
     }
-   // print $vardas . ' Netinkamas kariuomenei';
-} elseif($amzius >= 65){
-    print $vardas . ' Yra Pensininkas ir ';
-    print $vardas . ' netinkamas kariuomenei';
+    }
+    return $sum;
 }
-elseif($amzius < 0){
-    print 'Klaida. Blogai nuordytas amzius';
-}
+echo sumArrayNumbers($numbersArray);
+echo ('<br>');
+echo sumArrayNumbers($numbersArray2);
+
+
 ?>
-
-
-
-
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Klases projektai</title>
-</head>
-<body>
-
-</body>
-</html>
